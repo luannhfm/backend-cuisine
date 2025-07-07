@@ -9,6 +9,7 @@ import { orderRoutes } from './modules/orders/routes/order.routes';
 import { homepageRoutes } from './modules/home/routes/homepage.routes';
 import { checkoutRoutes } from './modules/checkout/checkout.routes';
 import { shippingRoutes } from './modules/shipping/routes/shipping.routes';
+import { geocodingRoutes } from './modules/geocoding/geocoding.routes';
 
 export async function buildServer() {
   const app = Fastify({ logger: true , bodyLimit: 10 * 1024 * 1024 });
@@ -50,6 +51,7 @@ export async function buildServer() {
   await app.register(homepageRoutes);
   await app.register(checkoutRoutes, { prefix: '/api' });
   await app.register(shippingRoutes, { prefix: '/api' }); // Nova rota de shipping
+  await app.register(geocodingRoutes, { prefix: '/api' }); // Nova rota de geocoding
   // Se quiser proteger:
   // await app.register(productRoutes, { prefix: '/products', onRequest: app.authenticate });
 
