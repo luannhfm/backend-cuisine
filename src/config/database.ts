@@ -14,11 +14,13 @@ export const AppDataSource = new DataSource({
     type: "postgres",
     host: env.DATABASE_HOST,
     port: env.DATABASE_PORT,
-    username: env.DATABASE_USER,
-    password: env.DATABASE_PASSWORD,
-    database: env.DATABASE_NAME,
-    entities: [Product, UserAdmin, Customer, Order, HomepageConfig,ShippingQuote ],
-    migrations: [Analysis1721666809329],
-   synchronize: true, // 🚨 Apenas para desenvolvimento, nunca use em produção!
+      username: env.DATABASE_USER,
+  password: env.DATABASE_PASSWORD,
+  database: env.DATABASE_NAME,
+  entities: [Product, UserAdmin, Customer, Order, HomepageConfig, ShippingQuote],
+  migrations: [Analysis1721666809329],
+  synchronize: true, // ⚠️ Só para dev!
+  ssl: {
+    rejectUnauthorized: false, // Necessário para AWS RDS sem certificado válido localmente
+  },
 });
-
